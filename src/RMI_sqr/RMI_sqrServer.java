@@ -4,16 +4,21 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.RMIServerSocketFactory;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 
 public class RMI_sqrServer extends UnicastRemoteObject implements RMI_sqrinterface {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int nextId = 1;
-	private HashMap<Integer, RMI_sqrlicence> licencies;
-
+	private HashMap<Integer, RMI_sqrlicence> licencies = new HashMap<>();
 	public RMI_sqrServer() throws RemoteException {
 		super();
-
+		
 	}
 
 	public double getSquare(double input) throws RemoteException {
@@ -26,10 +31,10 @@ public class RMI_sqrServer extends UnicastRemoteObject implements RMI_sqrinterfa
 
 	public static void main(String[] args) throws RemoteException, AlreadyBoundException {
 		try {
-			Registry registry = LocateRegistry.createRegistry(7777);
+			Registry registry = LocateRegistry.createRegistry(1125);
 			registry.bind("rmi_sqrlicence", new RMI_sqrServer());
 			System.out.println("server okay");
-		} catch (Exception e) {
+		}catch(Exception e) {
 			System.out.println("server not okay");
 		}
 	}
@@ -37,8 +42,8 @@ public class RMI_sqrServer extends UnicastRemoteObject implements RMI_sqrinterfa
 	@Override
 	public int ajouteLicencie(String nom, String ligue) throws RemoteException {
 		RMI_sqrlicence licencie = new RMI_sqrlicence(nextId, nom, ligue);
-		licencies.put(nextId, licencie);
-		return nextId++;
+        licencies.put(nextId, licencie);
+        return nextId++;
 	}
 
 	@Override

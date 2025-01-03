@@ -3,7 +3,11 @@ package RMI_sqr;
 import java.io.Serializable;
 
 public class RMI_sqrlicence implements Serializable {
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private String nom;
     private String ligue;
 
