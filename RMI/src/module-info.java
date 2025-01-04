@@ -5,5 +5,6 @@
  * 
  */
 module RMI_test {
-	requires java.rmi;
+    requires java.rmi;
+    exports RMI_sqr;
 }
