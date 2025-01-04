@@ -1,6 +1,0 @@
-[
-	uuid(319963BA-782B-455A-B7AE-09BA70621640)
-]
-interface Calculator {
-	int Add([in] int a, [in] int b);
-}
