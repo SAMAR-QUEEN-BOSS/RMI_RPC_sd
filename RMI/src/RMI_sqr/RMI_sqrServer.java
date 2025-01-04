@@ -32,6 +32,7 @@ public class RMI_sqrServer extends UnicastRemoteObject implements RMI_sqrinterfa
 	public static void main(String[] args) throws RemoteException, AlreadyBoundException {
 		try {
 			Registry registry = LocateRegistry.createRegistry(1125);//connecting the server
+			System.setSecurityManager(new SecurityManager());
 			registry.bind("rmi_sqrlicence", new RMI_sqrServer());
 			System.out.println("server okay");//if  the server work
 		}catch(Exception e) {
